@@ -25,11 +25,19 @@ console.log(name);//lululu
 ```
 
 ### let & const
+let和const声明的变量也会提升，但在全局上下文中，它们不会绑定到全局对象上，它们单独存放在另一个内存空间上。
 #### Temporal Dead Zone
+在执行上下文创建的第一个阶段Memory Creation Phase中，let和const声明的变量会被分配内存空间。但是这个内存空间不是在全局对象上(全局上下文)，而是单独出来的一个内存空间。
+从变量声明被分配内存空间开始，直到第二个阶段Code Execution Phase变量正式初始化或声明为止，这个阶段称为该变量的暂存死区(Temporal Dead Zone)，不能访问变量，否则会报错。
+```javascript
+console.log(name);// ReferenceError: Cannot access 'name' before initialization
+let name = "lululu";
+```
 
 ## 类提升
+使用类声明定义的类会被提升，这意味着JavaScript有一个对类的引用。但是，该类没有默认初始化，因此在执行该类初始化的行之前使用该类的任何代码都将抛出ReferenceError。
 
 
 ## 参考
-- [Namaste JavaScript 🙏 Ep.3+Ep.8](https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP)
+- [Namaste JavaScript 🙏 Ep.3 + Ep.8](https://www.youtube.com/playlist?list=PLlasXeu85E9cQ32gLCvAvr9vNaUccPVNP)
 - [MDN Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
